@@ -1,29 +1,13 @@
-import { useEffect, useState } from "react";
-import { getUsers, createUser } from "./api/userApi";
+import { useState } from "react";
+import Login from "./Login";
+import Profile from "./Profile";
 
 function App() {
-  const [users, setUsers] = useState<any[]>([]);
+  const [token, setToken] = useState(localStorage.getItem("token") ?? "");
 
-  useEffect(() => {
-    getUsers().then(data => {
-      setUsers(data);
-    });
-  }, []);
+  if (!token) return <Login onLogin={setToken} />;
 
-  const submitUser = async () => {
-    await createUser({ name: "Tes TypeScript" });
-    const updated = await getUsers();
-    setUsers(updated);
-  };
-
-  return (
-    <div>
-      <h1>Test FE → BE → DB</h1>
-      <button onClick={submitUser}>Tambah User</button>
-
-      <pre>{JSON.stringify(users, null, 2)}</pre>
-    </div>
-  );
+  return <Profile token={token} />;
 }
 
 export default App;

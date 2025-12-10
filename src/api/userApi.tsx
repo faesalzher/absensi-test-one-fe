@@ -1,5 +1,5 @@
 export async function getUsers() {
-  const res = await fetch("https://localhost:44378/api/ping/all", {
+  const res = await fetch("https://absensi-kpu-kota-batu-be.onrender.com/api/ping/all", {
     method: "GET",
     credentials: "include",     // penting kalau pakai AllowCredentials()
   });
@@ -17,7 +17,7 @@ interface User {
 }
 
 export async function createUser(payload: User) {
-  const res = await fetch("https://localhost:44378/api/ping/create", {
+  const res = await fetch("https://absensi-kpu-kota-batu-be.onrender.com/api/ping/create", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
